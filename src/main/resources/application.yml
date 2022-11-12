@@ -1,12 +1,20 @@
+server:
+  port: 8080
 ## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
-spring.datasource.url = jdbc:mysql://127.0.0.1:3306/api_training
-spring.datasource.username = root
-spring.datasource.password = root
-  
-  ## Hibernate Properties
-  
-  # The SQL dialect makes Hibernate generate better SQL for the chosen database
-spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-  
-  # Hibernate ddl auto (create, create-drop, validate, update)
-spring.jpa.hibernate.ddl-auto = update
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/api_training
+    username: root
+    password: root
+    jpa:
+      properties:
+        hibernate:
+          ## Hibernate Properties
+          # The SQL dialect makes Hibernate generate better SQL for the chosen database
+          # Hibernate ddl auto (create, create-drop, validate, update)
+          dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+          ddl-auto: update
+# setting for mapping DB columns by snake-style and Java properties by camel-case-style
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
