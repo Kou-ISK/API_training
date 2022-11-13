@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.api_training.mapper.UserMapper">
-    <resultMap id="user"
-               type="com.example.api_training.mapper.UserMapper">
-    <result column="id" jdbcType="INTEGER" property="userId" />
-    <result column="name" jdbcType="VARCHAR" property="userName" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    </resultMap>
     <select id="findUserById" resultType="com.example.api_training.mapper.UserMapper">
         SELECT name, email FROM users WHERE id = #{userId};
     </select>

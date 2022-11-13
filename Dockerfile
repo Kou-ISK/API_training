@@ -6,3 +6,5 @@ WORKDIR /app
 ENV JAVA_OPTS=""
 ENV JAR_TARGET "API_training-0.0.1-SNAPSHOT.jar"
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar build/libs/API_training-0.0.1-SNAPSHOT.jar" ]
+FROM mysql:8.0
+ENV LANG ja_JP.UTF-8
