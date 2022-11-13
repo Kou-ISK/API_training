@@ -14,8 +14,12 @@ services:
     volumes:
       - ./docker/tmp/mysql:/var/lib/mysql
       - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
-volumes:
-  data:
-    driver: local
-  server:
-    port: 8080
+  app:
+    image: openjdk:17
+    ports:
+      - 8080:8080
+    tty: true
+    volumes:
+      - ./server:/srv:cached
+    working_dir: /srv
+

@@ -2,26 +2,27 @@ package com.example.api_training.controller
 
 import com.example.api_training.model.UserModel
 import com.example.api_training.service.UserService
-import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.*
 
-@Controller
 @RestController
-class UserController(
-    var service: UserService) {
-
-    @PostMapping("/api/users")
+class UserController{
+    @Autowired
+    private lateinit var service: UserService
+    @PutMapping("/users")
     fun createUser(@RequestBody user:UserModel){
-        service.createUser(user)
+        return service.createUser(user)
     }
 
-    @GetMapping("api/users/{id}")
-    fun getUser(@PathVariable id:String){
-        val user = service.findUser(id)
-        println(user)
+    @GetMapping("/users/{id}")
+    fun findUserById(@PathVariable("id") id:String):UserModel{
+        val user = service.findUserById(id)
+        println(user.userName)
+        return user
+    }
+
+    @GetMapping("/hello")
+    fun hello(): String{
+        return "Hello World."
     }
 }
