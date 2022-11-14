@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: api_training
     ports:
-      - 13306:3306 # 3306のポートがきたら、3306のポートを使う
+      - 127.0.0.1:3306:3306 # 3306のポートがきたら、3306のポートを使う
     volumes:
       - ./docker/tmp/mysql:/var/lib/mysql
       - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d

@@ -6,7 +6,6 @@ name varchar(255) NOT NULL,
 email varchar(255) NOT NULL,
 PRIMARY KEY(id));
 
-INSERT INTO user(name, email)
-values(
-('TANAKA', 'tanaka_TNK@tanaka.jp'),
-('YAMADA', 'yamada_YMD@yamada.jp'));
+INSERT INTO user values (
+(0,'TANAKA', 'tanaka_TNK@tanaka.jp'),
+(0,'YAMADA', 'yamada_YMD@yamada.jp'));
