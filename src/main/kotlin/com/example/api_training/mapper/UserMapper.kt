@@ -4,8 +4,7 @@ import org.apache.ibatis.annotations.Mapper
 
 @Mapper
 interface UserMapper {
-    @Override
     fun createUser(user:UserModel)
-    @Override
-    fun findUserById(id:String):UserModel
+
+    fun findUserById(id:Int):UserModel
 }

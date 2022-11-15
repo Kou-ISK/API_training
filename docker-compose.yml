@@ -8,19 +8,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_ROOT_USER: root
-      MYSQL_USER: Kou
-      MYSQL_PASSWORD: password
       MYSQL_DATABASE: api_training
     ports:
-      - 127.0.0.1:3306:3306 # 3306のポートがきたら、3306のポートを使う
+      - "3306:3306" # 3306のポートがきたら、3306のポートを使う
     volumes:
-      - ./docker/tmp/mysql:/var/lib/mysql
-      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
-  app:
-    image: openjdk:17
-    ports:
-      - 8080:8080
-    tty: true
-    volumes:
-      - ./server:/srv:cached
-    working_dir: /srv
+      - db-store:/var/lib/mysql/
+      - ./logs:/var/log/mysql
+volumes:
+  db-store:

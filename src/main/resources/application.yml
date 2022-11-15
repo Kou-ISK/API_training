@@ -1,36 +1,17 @@
 # Web
 server:
   port: 8080
-  servlet:
-    context-path: /api_training
 ## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/api_training
     username: root
-    password: root
+    password: password
     driverClassName: org.mariadb.jdbc.Driver
-    jpa:
-      database: MYSQL
-      properties:
-        hibernate:
-          ## Hibernate Properties
-          # The SQL dialect makes Hibernate generate better SQL for the chosen database
-          # Hibernate ddl auto (create, create-drop, validate, update)
-          dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-          ddl-auto: update
-    hikari:
-      connection-timeout: 15000
-      idle-timeout: 10000
-      maximum-pool-size: 3
-      leak-detection-threshold: 5000
 # setting for mapping DB columns by snake-style and Java properties by camel-case-style
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-app:
-  myProperty:
-    port: 8080
 jackson:
   serialization:
     write-dates-as-timestamps: false

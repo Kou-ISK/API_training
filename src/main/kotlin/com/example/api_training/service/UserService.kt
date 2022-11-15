@@ -10,9 +10,11 @@ class UserService{
     @Autowired
     lateinit var mapper: UserMapper
     fun createUser(user: UserModel){
+        println("registration success")
         return mapper.createUser(user)
     }
-    fun findUserById(id:String):UserModel{
+    fun findUserById(id:Int):UserModel{
+        println("探そうとはしています")
         return mapper.findUserById(id)
     }
 }
