@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.*
 class UserController (val service: UserService){
     @PostMapping("/users/add")
     fun createUser(
-                   @RequestParam("name") name:String,
-                   @RequestParam("email") email:String){
-        val user= UserModel(null,name,email)
+                   @RequestBody user:UserModel){
         return service.createUser(user)
     }
 
