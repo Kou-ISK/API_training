@@ -7,4 +7,5 @@ interface UserMapper {
     fun createUser(user:UserModel)
 
     fun findUserById(id:Int):UserModel
+    fun findAllUser():List<UserModel>
 }

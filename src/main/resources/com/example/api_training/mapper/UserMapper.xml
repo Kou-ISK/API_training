@@ -9,7 +9,12 @@
     <select id="findUserById" resultMap="userMap">
         SELECT id, name, email FROM users WHERE id = #{id};
     </select>
-    <insert id="createUser" useGeneratedKeys="true" keyColumn="id" keyProperty="userId" parameterType="com.example.api_training.model.UserModel">
+
+    <select id="findAllUser" resultMap="userMap">
+        SELECT id, name, email FROM users;
+    </select>
+    <insert id="createUser" useGeneratedKeys="true" keyColumn="id" keyProperty="userId"
+            parameterType="com.example.api_training.model.UserModel">
         INSERT INTO users (name, email) VALUES(#{userName}, #{email});
     </insert>
 </mapper>

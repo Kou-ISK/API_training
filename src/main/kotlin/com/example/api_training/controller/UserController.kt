@@ -14,11 +14,16 @@ class UserController (val service: UserService){
         return service.createUser(user)
     }
 
-    @GetMapping("/users")
-    fun findUserById(@RequestParam("id") id:Int):UserModel{
+    @GetMapping("/user/{id}")
+    fun findUserById(@PathVariable("id") id:Int):UserModel{
         val user = service.findUserById(id)
         println(user)
         return user
+    }
+
+    @GetMapping("/user")
+    fun findAllUser():List<UserModel>{
+        return service.findAllUser()
     }
 
     @GetMapping("/hello")

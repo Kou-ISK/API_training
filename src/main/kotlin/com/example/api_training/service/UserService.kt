@@ -14,7 +14,10 @@ class UserService{
         return mapper.createUser(user)
     }
     fun findUserById(id:Int):UserModel{
-        println("探そうとはしています")
         return mapper.findUserById(id)
+    }
+
+    fun findAllUser():List<UserModel>{
+        return mapper.findAllUser()
     }
 }
