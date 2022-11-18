@@ -1,0 +1,22 @@
+{
+  "name": "userapi-doc.yml",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "codegen": "^0.1.0",
+    "redoc-cli": "^0.13.20",
+    "swagger-codegen": "^0.1.1"
+  },
+  "scripts": {
+    "preshow": "redoc-cli bundle userAPI-doc.yml --output app.html",
+    "og": "openapi-generator-cli",
+    "show": "open app.html"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.5.2"
+  },
+  "keywords": [],
+  "author": "",
+  "description": ""
+}

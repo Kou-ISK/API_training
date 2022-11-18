@@ -1,0 +1,48 @@
+OpenAPI: 3.1.0
+swagger: "2.0"
+info:
+  title: ユーザー管理API
+  description: ユーザーを管理する
+  version: "1.0.0"
+serves:
+  - url: http://loaclhost8080
+    description: ローカルで実行
+paths:
+  /user:
+    get:
+      operationId: findUserById
+      summary: 入力されたIDに紐づいたユーザーを表示
+      parameters:
+        -
+          id: integer
+          name: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payload:
+                    type: object
+components:
+  schemas:
+    user:
+      type: object
+      description: ユーザー
+      properties:
+        id:
+          description: ID
+          type: integer
+          example: 1
+        name:
+          description: 名前
+          type: string
+          example: 山田
+responses:
+  users:
+    description: /userのレスポンス
+    content:
+      application/json:
+        schema:
