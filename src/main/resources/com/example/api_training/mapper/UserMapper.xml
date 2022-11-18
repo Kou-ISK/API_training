@@ -17,4 +17,7 @@
             parameterType="com.example.api_training.model.UserModel">
         INSERT INTO users (name, email) VALUES(#{userName}, #{email});
     </insert>
+    <delete id="deleteUserById" parameterType="integer">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
 </mapper>

@@ -8,4 +8,5 @@ interface UserMapper {
 
     fun findUserById(id:Int):UserModel
     fun findAllUser():List<UserModel>
+    fun deleteUserById(id:Int)
 }

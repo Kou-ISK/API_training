@@ -26,6 +26,12 @@ class UserController (val service: UserService){
         return service.findAllUser()
     }
 
+    @DeleteMapping("/delete_user/{id}")
+    fun deleteUserById(@PathVariable("id") id:Int):String{
+        service.deleteUserById(id)
+        return "削除しました"
+    }
+
     @GetMapping("/hello")
     fun hello(): String{
         return "Hello World."

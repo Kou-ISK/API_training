@@ -17,6 +17,9 @@ class UserService{
         return mapper.findUserById(id)
     }
 
+    fun deleteUserById(id: Int){
+        mapper.deleteUserById(id)
+    }
     fun findAllUser():List<UserModel>{
         return mapper.findAllUser()
     }
