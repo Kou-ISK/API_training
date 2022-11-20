@@ -17,6 +17,10 @@ class UserService{
         return mapper.findUserById(id)
     }
 
+    fun updateUser(user: UserModel){
+        return mapper.updateUser(user)
+    }
+
     fun deleteUserById(id: Int){
         mapper.deleteUserById(id)
     }

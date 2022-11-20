@@ -17,6 +17,9 @@
             parameterType="com.example.api_training.model.UserModel">
         INSERT INTO users (name, email) VALUES(#{userName}, #{email});
     </insert>
+    <update id="updateUser" parameterType="com.example.api_training.model.UserModel">
+        UPDATE users SET name = #{userName}, email = #{email} WHERE id = #{userId}
+    </update>
     <delete id="deleteUserById" parameterType="integer">
         DELETE FROM users WHERE id = #{id}
     </delete>

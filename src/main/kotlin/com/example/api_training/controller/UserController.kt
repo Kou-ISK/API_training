@@ -32,6 +32,13 @@ class UserController (val service: UserService){
         return "削除しました"
     }
 
+    @PutMapping("/update_user/{id}")
+    fun updateUser(@PathVariable("id") id: Int, @RequestBody newUserData: UserModel):UserModel{
+        val user = UserModel(id,newUserData.userName,newUserData.email)
+        service.updateUser(user)
+        return user
+    }
+
     @GetMapping("/hello")
     fun hello(): String{
         return "Hello World."
