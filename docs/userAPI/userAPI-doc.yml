@@ -11,7 +11,7 @@ paths:
   user/{id}:
     get:
       operationId: findUserById
-      summary: 入力されたIDに紐づいたユーザーを表示
+      summary: パスパラメータで指定したIDに紐づくユーザーを表示
       parameters:
         - schema:
           type: string
@@ -29,6 +29,50 @@ paths:
                   id: 1
                   name: 山田
                   email: yamadayamada@yamada.com
+  user:
+    get:
+      operationId: findAllUser
+      summary: 全ユーザー表示
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  users:
+                    - user:
+                        id: 1
+                        name: 山田
+                        email: yamadayamada@yamada.com
+                    - user:
+                        id: 2
+                        name: 田中
+                        email: tanakatanaka@tanaka.com
+  delete_user/{id}:
+    delete:
+      operationId: deleteUserById
+      summary: パスパラメータで指定したIDに紐づくユーザーを削除
+      parameters:
+        - schema:
+          type: string
+          name: id
+          in: path
+          required: true
+      responses:
+        '200':
+          description: ok
+  update_user/{id}:
+    put:
+      operationId: update_user/{id}
+      summary: パスパラメータで指定したIDに紐づくユーザーを更新
+      parameters:
+        - schema:
+            type: string
+            name: id
+            in: path
+            required: true
 
 components:
   schemas:
