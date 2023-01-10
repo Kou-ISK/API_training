@@ -29,6 +29,8 @@ paths:
                   id: 1
                   name: 山田
                   email: yamadayamada@yamada.com
+        '404':
+          description: not found
   user:
     get:
       operationId: findAllUser
@@ -50,6 +52,8 @@ paths:
                         id: 2
                         name: 田中
                         email: tanakatanaka@tanaka.com
+        '404':
+          description: not found
   delete_user/{id}:
     delete:
       operationId: deleteUserById
@@ -63,6 +67,8 @@ paths:
       responses:
         '200':
           description: ok
+        '404':
+          description: not found
   update_user/{id}:
     put:
       operationId: update_user/{id}
@@ -71,9 +77,15 @@ paths:
         - schema:
             type: string
             name: id
-            in: path
+            in: body
             required: true
-
+      responses:
+        '200':
+          description: ok
+        '404':
+          description: not found
+        '405':
+          description: method not allowed
 components:
   schemas:
     user:
