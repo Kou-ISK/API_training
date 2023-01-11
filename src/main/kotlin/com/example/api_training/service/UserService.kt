@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service
 class UserService{
     @Autowired
     lateinit var mapper: UserMapper
-    fun createUser(user: UserModel){
+    fun createUser(user: UserModel):UserModel{
         println("registration success")
-        return mapper.createUser(user)
+        mapper.createUser(user)
+        return user
     }
     fun findUserById(id:Int):UserModel{
         return mapper.findUserById(id)
