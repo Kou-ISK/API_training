@@ -1,37 +1,85 @@
 package com.example.api_training.service
 
 import com.example.api_training.model.UserModel
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.util.AssertionErrors.assertEquals
-import org.springframework.test.util.AssertionErrors.assertNotEquals
 import org.springframework.transaction.annotation.Transactional
 
-
-
-class UserServiceTest{
+@SpringBootTest
+@Transactional
+class UserServiceTest() {
+    private companion object {
+        val user = UserModel(userId = 1, userName = "田中", email = "tanakatanaka@tanaka.com")
+    }
     @Autowired
-    private lateinit var service: UserService
+    lateinit var service: UserService
 
     @Test
-    @Transactional
-    fun createUserTest(){
+    @DisplayName("ユーザー登録（正常系）")
+    fun createUserTest() {
         /**
          * Arrange
          */
-        val user1 = UserModel(userId=1,userName="田中", email = "tanakatanaka@tanaka.com")
-        val user2 = UserModel(userId= 1,userName="山田", email = "yamadayamada@yamada.com")
+        val name = "あ".repeat(100)
+        val expectedUser = user.copy(userName=name)
         /**
          * Act
          */
-        val user1Actual = service.createUser(user1)
-        val user2Actual = service.createUser(user2)
+        val actualUser = service.createUser(expectedUser)
         /**
          * Assert
          */
-        assertEquals("正常系",user1,user1Actual)
-        assertEquals("異常系",user2,user2Actual)
-        assertNotEquals("異常系",user1,user2Actual)
+        assertEquals("ユーザー名", expectedUser.userName, actualUser.userName)
+        assertEquals("メールアドレス", expectedUser.email, actualUser.email)
     }
 
-}
+    @Test
+    @DisplayName("Null登録失敗（異常系）")
+    fun createUserTest_fail_null() {
+        /**
+         * Arrange
+         */
+        val expectedUser = user.copy(userId = null, userName = null, email = null)
+        /**
+         * Act, Assert
+         */
+        assertThrows<Exception> {
+            service.createUser(expectedUser)
+        }
+    }
+
+    @Test
+    @DisplayName("空文字登録失敗（異常系）")
+    fun createUserTest_fail_empty() {
+        /**
+         * Arrange
+         */
+        val expectedUser = user.copy(userId = null, userName = "", email = "")
+        /**
+         * Act, Assert
+         */
+        assertThrows<Exception> {
+            service.createUser(expectedUser)
+        }
+    }
+
+    @Test
+    @DisplayName("文字数オーバー登録失敗（異常系）")
+    fun createUserTest_fail_name_limit_over() {
+        /**
+         * Arrange
+         */
+        val name = "あ".repeat(101)
+        val expectedUser = user.copy(userId = null, userName = name)
+        /**
+         * Act, Assert
+         */
+        assertThrows<Exception> {
+            service.createUser(expectedUser)
+        }
+    }
+    }
