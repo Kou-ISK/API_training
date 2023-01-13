@@ -10,24 +10,41 @@ class UserService{
     @Autowired
     lateinit var mapper: UserMapper
     fun createUser(user: UserModel):UserModel{
+        //名前、メールアドレス文字数チェック
+        checkNameEmailLength(user)
         println("registration success")
         mapper.createUser(user)
         return user
     }
     fun findUserById(id:Int):UserModel{
-        return mapper.findUserById(id)
+        val user = mapper.findUserById(id) ?: throw Exception("指定したIDに紐づくユーザーが存在しません")
+        return user
     }
 
     fun updateUser(user: UserModel){
+        checkUserExistence(user.userId!!)
         return mapper.updateUser(user)
     }
 
     fun deleteUserById(id: Int){
+        checkUserExistence(id)
         mapper.deleteUserById(id)
     }
     fun findAllUser():List<UserModel>{
         return mapper.findAllUser()
     }
 
-//    TODO Validationの追加
+    fun checkUserExistence(id:Int){
+        if(findUserById(id) == null) {
+            throw Exception("指定したIDに紐づくユーザーが存在しません")
+        }
+    }
+
+    fun checkNameEmailLength(user:UserModel){
+        if(user.userName != null && user.email!=null) {
+            if (user.userName.length > 100 || user.email.length > 100) {
+                throw Exception("名前もしくはメールアドレスが文字数上限を超過しています")
+            }
+        }
+    }
 }
