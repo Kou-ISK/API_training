@@ -25,6 +25,20 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  id:
+                    type: string
+                    description: ID(auto increment)
+                  name:
+                    type: string
+                    description: ユーザー氏名
+                  email:
+                    type: string
+                    description: メールアドレス
+                required:
+                  - id
+                  - name
+                  - email
                 example:
                   id: 1
                   name: 山田
@@ -41,17 +55,34 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                properties:
+                  users:
+                    type: array
+                    description: ユーザー一覧
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          description: ID(auto increment)
+                        name:
+                          type: string
+                          description: ユーザー氏名
+                        email:
+                          type: string
+                          description: メールアドレス
+                      required:
+                        - id
+                        - name
+                        - email
                 example:
                   users:
-                    - user:
-                        id: 1
-                        name: 山田
-                        email: yamadayamada@yamada.com
-                    - user:
-                        id: 2
-                        name: 田中
+                    [
+                      { id: 1 ,name: 山田, email: yamadayamada@yamada.com
+                      },
+                      { id: 2,
+                        name: 田中,
                         email: tanakatanaka@tanaka.com
+                      }, ]
         '404':
           description: not found
   delete_user/{id}:
