@@ -11,8 +11,7 @@ class UserService {
     lateinit var mapper: UserMapper
     fun createUser(user: UserModel): UserModel {
         //名前、メールアドレス文字数チェック
-        checkNameEmailLength(user)
-        checkNameEmailEmpty(user)
+        validateUser(user)
         mapper.createUser(user)
         return user
     }
@@ -23,14 +22,13 @@ class UserService {
     }
 
     fun updateUser(user: UserModel) {
-        checkNameEmailLength(user)
-        checkNameEmailEmpty(user)
-        checkUserExistence(user.userId!!)
+        findUserById(user.userId!!)
+        validateUser(user)
         return mapper.updateUser(user)
     }
 
     fun deleteUserById(id: Int) {
-        checkUserExistence(id)
+        findUserById(id)
         mapper.deleteUserById(id)
     }
 
@@ -38,10 +36,9 @@ class UserService {
         return mapper.findAllUser()
     }
 
-    fun checkUserExistence(id: Int) {
-        if (findUserById(id) == null) {
-            throw Exception("指定したIDに紐づくユーザーが存在しません")
-        }
+    fun validateUser(user: UserModel) {
+        checkNameEmailLength(user)
+        checkNameEmailEmpty(user)
     }
 
     fun checkNameEmailLength(user: UserModel) {
