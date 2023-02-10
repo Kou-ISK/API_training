@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v1
 
       - name: install redoc # Redocのインストール
-        run: npm install redoc-cli
+        run: npm install -g redoc-cli
 
       - name: build openAPI file # OpenAPIの定義をHTMLに変換
         run: redoc-cli bundle ./../docs-src/userAPI/userAPI-doc.yaml # プロジェクトのディレクトリに合わせて変更してください。
