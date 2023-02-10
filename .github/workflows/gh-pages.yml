@@ -4,9 +4,6 @@ on:
   push:
     branches: [ master ]
 
-# 手動実行できるようにするため
-workflow_dispatch:
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
