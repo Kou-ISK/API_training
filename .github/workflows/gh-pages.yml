@@ -8,17 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [ "12.4.0" ]
     steps:
       - name: Checkout # 最新コードの取得
         uses: actions/checkout@v2
 
       - name: node setting # Redocでnpmを使うのでNodeの設定
         uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
 
       - name: install redoc # Redocのインストール
         run: npm install redoc-cli
