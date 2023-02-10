@@ -1,8 +1,7 @@
 name: github pages
 
 on:
-  branch
-push:
+  push:
   branches: [ master ]
 
 # 手動実行できるようにするため
