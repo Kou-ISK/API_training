@@ -16,18 +16,19 @@
 <script src="./swagger-ui-standalone-preset.js" charset="UTF-8"></script>
 <script src="./swagger-initializer.js" charset="UTF-8"></script>
 <script>
-+     window.onload = () => {
-+       window.ui = SwaggerUIBundle({
-+         url: './../../docs-src/userAPI/userAPI-doc.yml',
-+         dom_id: '#swagger-ui',
-+         presets: [
-+           SwaggerUIBundle.presets.apis,
-+           SwaggerUIStandalonePreset
-+         ],
-+         layout: "StandaloneLayout",
-+       });
-+     };
-+
+window.onload = function() => {
+window.ui = SwaggerUIBundle({
+url: '/../../docs-src/userAPI/userAPI-doc.yml',
+ dom_id: '#swagger-ui',
+deepLinking: true,
+ presets: [
+           SwaggerUIBundle.presets.apis,
+        SwaggerUIStandalonePreset
+        ],
+       layout: "StandaloneLayout",
+      });
+     };
+
 
 </script>
 </body>
