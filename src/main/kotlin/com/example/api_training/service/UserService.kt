@@ -17,14 +17,13 @@ class UserService {
     }
 
     fun findUserById(id: Int): UserModel {
-        val user = mapper.findUserById(id) ?: throw Exception("指定したIDに紐づくユーザーが存在しません")
-        return user
+        return mapper.findUserById(id) ?: throw Exception("指定したIDに紐づくユーザーが存在しません")
     }
 
-    fun updateUser(user: UserModel) {
-        findUserById(user.userId!!)
+    fun updateUser(user: UserModel): UserModel {
         validateUser(user)
-        return mapper.updateUser(user)
+        mapper.updateUser(user)
+        return findUserById(user.userId!!)
     }
 
     fun deleteUserById(id: Int) {
