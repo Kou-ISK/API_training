@@ -18,8 +18,8 @@ jobs:
 
       - name: OpenAPI Setup
         run: npm ci
-        working-directory: ./docs-src/userAPI/userAPI-doc.yml
+        working-directory: ./docs-src/userAPI
 
       - name: OpenAPI Make
         run: npm run redoc
-        working-directory: ./docs-src/userAPI/userAPI-doc.yml
+        working-directory: ./docs-src/userAPI
