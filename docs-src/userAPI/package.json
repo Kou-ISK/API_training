@@ -9,9 +9,8 @@
     "swagger-codegen": "^0.1.1"
   },
   "scripts": {
-    "preshow": "redoc-cli bundle userAPI-doc.yml --output app.html",
-    "og": "openapi-generator-cli",
-    "show": "open app.html"
+    "redoc": "redoc-cli  bundle userAPI-doc.yml --output ./../../docs/dist/index.html",
+    "show": "open ./../../docs/dist/index.html"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.5.2"
