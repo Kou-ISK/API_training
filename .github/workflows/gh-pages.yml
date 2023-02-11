@@ -14,12 +14,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: OpenAPI Setup
         run: npm ci
         working-directory: ./docs-src/userAPI
 
       - name: OpenAPI Make
-        run: npm run redoc-cli
+        run: npm run redoc
         working-directory: ./docs-src/userAPI
