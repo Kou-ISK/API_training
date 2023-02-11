@@ -7,11 +7,6 @@ on:
       - main
       - develop
       - feature*
-  merge:
-    branches:
-      - main
-      - develop
-      - feature*
 
 jobs:
   deploy:
