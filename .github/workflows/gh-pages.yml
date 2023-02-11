@@ -14,10 +14,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
-      
-      - run: npm ci
+          node-version: '14'
 
       - name: OpenAPI Make
-        run: npm run redoc
-        working-directory: ./docs-src/userAPI
+        uses: seeebiii/redoc-cli-github-action@v10
+        with:
+          args: 'build ./docs-src/userAPI -o ./docs/dist/index.html'
