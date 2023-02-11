@@ -17,5 +17,5 @@ jobs:
           node-version: '16'
 
       - name: OpenAPI Make
-        run: yarn redoc
+        run: yarn run redoc
         working-directory: ./docs-src/userAPI
