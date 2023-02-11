@@ -2,8 +2,14 @@ name: Build OpenAPI
 
 on:
   push:
+    # Set a branch name to trigger deployment
     branches:
-      - master  # Set a branch name to trigger deployment
+      - main
+      - develop
+      - feature*
+  merge:
+    branches:
+      - main
       - develop
       - feature*
 
