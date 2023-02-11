@@ -9,5 +9,5 @@
 ## OpenAPIを利用
 - 表示手順
   1. `API_training/docs/userAPI`へ移動
-  2. `yarn run show`を実行
+  2. `yarn redoc`を実行
 ---
