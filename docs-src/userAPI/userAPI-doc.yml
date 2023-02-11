@@ -75,14 +75,13 @@ paths:
                         - name
                         - email
                 example:
-                  users:
-                    [
-                      { id: 1 ,name: 山田, email: yamadayamada@yamada.com
-                      },
-                      { id: 2,
-                        name: 田中,
-                        email: tanakatanaka@tanaka.com
-                      }, ]
+                  [
+                    { id: 1 ,name: 山田, email: yamadayamada@yamada.com
+                    },
+                    { id: 2,
+                      name: 田中,
+                      email: tanakatanaka@tanaka.com
+                    }, ]
         '404':
           description: not found
   delete_user/{id}:
@@ -101,19 +100,14 @@ paths:
         '404':
           description: not found
   update_user/{id}:
-    put:
+    patch:
       operationId: update_user/{id}
       summary: パスパラメータで指定したIDに紐づくユーザーを更新
       requestBody:
         content:
-          application:json:
+          application/json:
             schema:
-              name: user
-              type: object
               properties:
-                id:
-                  type: string
-                  description: ID(auto increment)
                 name:
                   type: string
                   description: ユーザー氏名
@@ -125,6 +119,7 @@ paths:
           content:
             application/json:
               schema:
+                name: user
                 type: object
                 properties:
                   id:
@@ -145,27 +140,3 @@ paths:
           description: not found
         '405':
           description: method not allowed
-components:
-  schemas:
-    user:
-      type: object
-      description: ユーザー
-      properties:
-        id:
-          description: ID
-          type: integer
-          example: 1
-        name:
-          description: 名前
-          type: string
-          example: 山田
-        email:
-          description: メールアドレス
-          type: string
-          example: yamadayamada@yamada.com
-responses:
-  user:
-    example:
-    description: /userのレスポンス
-    content:
-      application/json:
