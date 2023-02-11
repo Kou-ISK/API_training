@@ -3,20 +3,23 @@ name: Build OpenAPI
 on:
   push:
     branches:
-      - master
+      - master  # Set a branch name to trigger deployment
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-20.04
     steps:
-      - name: Checkout # 最新コードの取得
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: node setting # Redocでnpmを使うのでNodeの設定
-        uses: actions/setup-node@v1
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-      - name: install redoc # Redocのインストール
-        run: npm install -g redoc-cli
+      - name: OpenAPI Setup
+        run: npm ci
+        working-directory: ./docs-src/userAPI/userAPI-doc
 
-      - name: build openAPI file # OpenAPIの定義をHTMLに変換
-        run: redoc-cli bundle ./../docs-src/userAPI/userAPI-doc.yaml # プロジェクトのディレクトリに合わせて変更してください。
+      - name: OpenAPI Make
+        run: npm run redoc
+        working-directory: ./docs-src/userAPI/userAPI-doc
