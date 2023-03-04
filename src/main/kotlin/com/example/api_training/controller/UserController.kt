@@ -1,9 +1,11 @@
 package com.example.api_training.controller
 
 import com.example.api_training.model.UserModel
+import com.example.api_training.model.XmlSample
 import com.example.api_training.service.UserService
-import org.springframework.beans.factory.annotation.Autowired
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import org.springframework.web.bind.annotation.*
+
 
 @RestController
 @RequestMapping("/")
@@ -43,5 +45,12 @@ class UserController(val service: UserService) {
     @GetMapping("/hello")
     fun hello(): String {
         return "Hello World."
+    }
+
+    @GetMapping("/return_xml")
+    fun returnXML(): String {
+        val xmlMapper = XmlMapper()
+        val xml = xmlMapper.writeValueAsString(XmlSample())
+        return xml
     }
 }
