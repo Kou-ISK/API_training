@@ -2,17 +2,23 @@ package com.example.api_training.controller
 
 import com.example.api_training.model.UserModel
 import com.example.api_training.model.XmlSample
+import com.example.api_training.service.StatsRestTemplate
 import com.example.api_training.service.UserService
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 
 @RestController
 @RequestMapping("/")
-class UserController(val service: UserService) {
+class UserController(
+    val service: UserService,
+    val restTemplate: StatsRestTemplate,
+) {
     @PostMapping("/users/add")
     fun createUser(
-        @RequestBody user: UserModel
+        @RequestBody user: UserModel,
     ): UserModel {
         service.createUser(user)
         return user
@@ -52,5 +58,10 @@ class UserController(val service: UserService) {
         val xmlMapper = XmlMapper()
         val xml = xmlMapper.writeValueAsString(XmlSample())
         return xml
+    }
+
+    @GetMapping("/test/api")
+    fun testAPI() {
+        println(restTemplate.request())
     }
 }
