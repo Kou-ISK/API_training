@@ -1,5 +1,7 @@
 package com.example.api_training.config
 
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.client.RestTemplate
@@ -7,6 +9,11 @@ import org.springframework.web.client.RestTemplate
 
 @Configuration
 class RestTemplateConfig {
+    @Value("\${e_stat.api.json.ROOT_URI}")
+    val ROOT_URI = ""
+
     @Bean
-    fun restTemplate(): RestTemplate = RestTemplate()
+    fun restTemplate(): RestTemplate {
+        return RestTemplateBuilder().rootUri(ROOT_URI).build()
+    }
 }
