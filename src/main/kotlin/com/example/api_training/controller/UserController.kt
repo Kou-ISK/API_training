@@ -62,6 +62,7 @@ class UserController(
 
     @GetMapping("/test/api")
     fun testAPI() {
-        println(restTemplate.request())
+        restTemplate.getStatsList()
+        restTemplate.getStatsData()
     }
 }

@@ -1,26 +1,39 @@
 package com.example.api_training.service
 
+import net.minidev.json.JSONObject
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.HttpMethod
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 
 // https://dashboard.e-stat.go.jp/static/api
+// https://www.e-stat.go.jp/api/api-info/e-stat-manual
 @Service
 class StatsRestTemplate(
     val restTemplate: RestTemplate,
 ) {
-    @Value("\${e_stat.api.json.REGION_INFO_PATH}")
-    var url = ""
+    @Value("\${e_stat.api.json.APPLICATION_ID}")
+    var appId = ""
 
-    fun request(): ResponseEntity<String>? {
-        //リクエストの送信
-        url += "&IndicatorCode=0201010000000010000"
-        val response = restTemplate.exchange(url, HttpMethod.GET, null, String::class.java)
-        println(url)
-        println(response.statusCodeValue)
-        println("===================================${response}=================")
-        return response
+    // TODO statsListから任意のstatsDataIdを取得する
+    var statsDataId = "0000081942"
+
+    // TODO レスポンス用のモデルを作成
+    // 統計データ取得
+    fun getStatsData() {
+        val statsResponse =
+            restTemplate.getForObject(
+                "/getStatsData/?appId=${appId}&statsDataId=${statsDataId}", JSONObject::class.java
+            )
+        println(statsResponse)
+    }
+
+    // 統計表情報取得
+    fun getStatsList() {
+        val statsList =
+            restTemplate.getForObject(
+                "/getStatsList/?appId=${appId}&surveyYears=1998&statsCode=00200522",
+                JSONObject::class.java
+            )
+        println(statsList)
     }
 }
