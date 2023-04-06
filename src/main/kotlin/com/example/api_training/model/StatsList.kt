@@ -1,10 +1,25 @@
 package com.example.api_training.model
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 
 @JsonSerialize
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class StatsData(
+    @JsonProperty("GET_STATS_DATA")
+    var getStatsData: GetStatsData?,
+)
+
+@JsonSerialize
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class StatsList(
+    @JsonProperty("GET_STATS_List")
+    var getStatsData: GetStatsData?,
+)
+
+@JsonSerialize
+data class GetStatsData(
     @JsonProperty("RESULT")
     var result: Result?,
     @JsonProperty("PARAMETER")
@@ -45,6 +60,8 @@ data class StatisticalData(
     var tableInf: TableInf?,
     @JsonProperty("CLASS_INF")
     var classInf: ClassInf?,
+    @JsonProperty("DATA_INF")
+    var dataInf: DataInf?,
 )
 
 @JsonSerialize
@@ -89,6 +106,34 @@ data class TableInf(
 data class ClassInf(
     @JsonProperty("CLASS_OBJ")
     var classObjList: List<ClassObj>?,
+)
+
+@JsonSerialize
+data class DataInf(
+    var note: Note,
+    var value: Value,
+)
+
+@JsonSerialize
+data class Note(
+    @JsonProperty("@char")
+    var char: String,
+    @JsonProperty("@$")
+    var value: String,
+)
+
+@JsonSerialize
+data class Value(
+    @JsonProperty("@cat01")
+    var cat: String,
+    @JsonProperty("@area")
+    var area: String,
+    @JsonProperty("@time")
+    var time: String,
+    @JsonProperty("@unit")
+    var unit: String,
+    @JsonProperty("$")
+    var value: String,
 )
 
 @JsonSerialize
