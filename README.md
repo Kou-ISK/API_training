@@ -5,6 +5,7 @@
 - REST APIの学習
     - まずはCRUD操作
 - xml形式でレスポンスを返すようにする
+- RestTemplateを利用して取得したJSONオブジェクトをマッピングする
 
 ---
 
