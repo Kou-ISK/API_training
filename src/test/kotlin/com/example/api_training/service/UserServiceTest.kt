@@ -1,6 +1,7 @@
 package com.example.api_training.service
 
 import com.example.api_training.model.UserModel
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -111,6 +112,15 @@ class UserServiceTest {
             assertEquals("ユーザーID", expected.userId, actual.userId)
             assertEquals("ユーザー名", expected.userName, actual.userName)
             assertEquals("メールアドレス", expected.email, actual.email)
+        }
+
+        @Test
+        @DisplayName("取得　異常系(該当項目なし)")
+        fun findUserByIdTest_fail_not_found() {
+            /**
+             * Assert
+             */
+            assertThrows<Exception> { service.findUserById(404) }
         }
     }
 }
