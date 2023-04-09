@@ -1,130 +1,175 @@
 package com.example.api_training.model
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 
 @JsonSerialize
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class StatsData(
+    @JsonProperty("GET_STATS_DATA")
+    val getStatsData: GetStatsData?,
+)
+
+@JsonSerialize
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class StatsList(
+    @JsonProperty("GET_STATS_List")
+    val getStatsData: GetStatsData?,
+)
+
+@JsonSerialize
+data class GetStatsData(
     @JsonProperty("RESULT")
-    var result: Result?,
+    val result: Result?,
     @JsonProperty("PARAMETER")
-    var parameter: Parameter?,
+    val parameter: Parameter?,
     @JsonProperty("STATISTICAL_DATA")
-    var statisticalData: StatisticalData?,
+    val statisticalData: StatisticalData?,
 )
 
 @JsonSerialize
 data class Result(
     @JsonProperty("STATUS")
-    var status: String?,
+    val status: String?,
     @JsonProperty("ERROR_MSG")
-    var errorMessage: String?,
+    val errorMessage: String?,
     @JsonProperty("DATE")
-    var date: String?,
+    val date: String?,
 )
 
 @JsonSerialize
 data class Parameter(
     @JsonProperty("LANG")
-    var lang: String?,
+    val lang: String?,
     @JsonProperty("STATS_DATA_ID")
-    var statsDataId: String?,
+    val statsDataId: String?,
     @JsonProperty("DATA_FORMAT")
-    var dataFormat: String?,
+    val dataFormat: String?,
     @JsonProperty("START_POSITION")
-    var startPosition: String?,
+    val startPosition: String?,
     @JsonProperty("METAGET_FLG")
-    var metaGetFlag: String?,
+    val metaGetFlag: String?,
 )
 
 @JsonSerialize
 data class StatisticalData(
     @JsonProperty("RESULT_INF")
-    var resultInf: ResultInf?,
+    val resultInf: ResultInf?,
     @JsonProperty("TABLE_INF")
-    var tableInf: TableInf?,
+    val tableInf: TableInf?,
     @JsonProperty("CLASS_INF")
-    var classInf: ClassInf?,
+    val classInf: ClassInf?,
+    @JsonProperty("DATA_INF")
+    val dataInf: DataInf?,
 )
 
 @JsonSerialize
 data class ResultInf(
     @JsonProperty("TOTAL_NUMBER")
-    var totalNumber: Int?,
+    val totalNumber: Int?,
     @JsonProperty("FORM_NUMBER")
-    var fromNumber: Int?,
+    val fromNumber: Int?,
     @JsonProperty("TO_NUMBER")
-    var toNumber: Int?,
+    val toNumber: Int?,
 )
 
 @JsonSerialize
 data class TableInf(
     @JsonProperty("@id")
-    var id: String?,
+    val id: String?,
     @JsonProperty("STAT_NAME")
-    var statName: CodeAndData?,
+    val statName: CodeAndData?,
     @JsonProperty("GOV_ORG")
-    var govOrg: CodeAndData?,
+    val govOrg: CodeAndData?,
     @JsonProperty("STATISTICS_NAME")
-    var statisticsName: String?,
+    val statisticsName: String?,
     @JsonProperty("TITLE")
-    var title: NumberAndData?,
+    val title: NumberAndData?,
     @JsonProperty("CYCLE")
-    var cycle: String?,
+    val cycle: String?,
     @JsonProperty("SURVEY_DATA")
-    var surveyData: String?,
+    val surveyData: String?,
     @JsonProperty("SMALL_AREA")
-    var smallArea: Int?,
+    val smallArea: Int?,
     @JsonProperty("MAIN_CATEGORY")
-    var mainCategory: CodeAndData?,
+    val mainCategory: CodeAndData?,
     @JsonProperty("SUB_CATEGORY")
-    var subCategory: CodeAndData?,
+    val subCategory: CodeAndData?,
     @JsonProperty("OVERALL_TOTAL_NUMBER")
-    var overAllTotalNumber: Int?,
+    val overAllTotalNumber: Int?,
     @JsonProperty("UPDATED_DATE")
-    var updatedDate: String?,
+    val updatedDate: String?,
 )
 
 @JsonSerialize
 data class ClassInf(
     @JsonProperty("CLASS_OBJ")
-    var classObjList: List<ClassObj>?,
+    val classObjList: List<ClassObj>?,
+)
+
+@JsonSerialize
+data class DataInf(
+    val note: Note,
+    val value: Value,
+)
+
+@JsonSerialize
+data class Note(
+    @JsonProperty("@char")
+    val char: String,
+    @JsonProperty("@$")
+    val value: String,
+)
+
+@JsonSerialize
+data class Value(
+    @JsonProperty("@cat01")
+    val cat: String,
+    @JsonProperty("@area")
+    val area: String,
+    @JsonProperty("@time")
+    val time: String,
+    @JsonProperty("@unit")
+    val unit: String,
+    @JsonProperty("$")
+    val value: String,
 )
 
 @JsonSerialize
 data class ClassObj(
     @JsonProperty("@id")
-    var id: String?,
+    val id: String?,
     @JsonProperty("@name")
-    var name: String?,
+    val name: String?,
     @JsonProperty("CLASS")
-    var classArray: List<ClassOfData>?,
+    val classArray: List<ClassOfData>?,
 )
 
 @JsonSerialize
 data class ClassOfData(
     @JsonProperty("@code")
-    var code: String?,
+    val code: String?,
     @JsonProperty("@name")
-    var name: String?,
+    val name: String?,
     @JsonProperty("@level")
-    var level: String?,
+    val level: String?,
     @JsonProperty("@unit")
-    var unit: String?,
+    val unit: String?,
 )
 
 @JsonSerialize
 data class CodeAndData(
     @JsonProperty("@code")
-    var code: String?,
+    val code: String?,
     @JsonProperty("$")
-    var data: String?,
+    val data: String?,
 )
 
 @JsonSerialize
 data class NumberAndData(
     @JsonProperty("@no")
-    var number: String?,
+    val number: String?,
     @JsonProperty("$")
-    var data: String?,
+    val data: String?,
 )

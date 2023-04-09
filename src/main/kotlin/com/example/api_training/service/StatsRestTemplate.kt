@@ -1,5 +1,8 @@
 package com.example.api_training.service
 
+import com.example.api_training.model.GetStatsData
+import com.example.api_training.model.StatsData
+import com.example.api_training.model.StatsList
 import net.minidev.json.JSONObject
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
@@ -22,7 +25,7 @@ class StatsRestTemplate(
     fun getStatsData() {
         val statsResponse =
             restTemplate.getForObject(
-                "/getStatsData/?appId=${appId}&statsDataId=${statsDataId}", JSONObject::class.java
+                "/getStatsData/?appId=${appId}&statsDataId=${statsDataId}", StatsData::class.java
             )
         println(statsResponse)
     }
@@ -32,7 +35,7 @@ class StatsRestTemplate(
         val statsList =
             restTemplate.getForObject(
                 "/getStatsList/?appId=${appId}&surveyYears=1998&statsCode=00200522",
-                JSONObject::class.java
+                StatsList::class.java
             )
         println(statsList)
     }
