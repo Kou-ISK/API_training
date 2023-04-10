@@ -14,7 +14,7 @@ data class StatsData(
 @JsonSerialize
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class StatsList(
-    @JsonProperty("GET_STATS_List")
+    @JsonProperty("GET_STATS_LIST")
     val getStatsData: GetStatsData?,
 )
 
@@ -79,7 +79,7 @@ data class TableInf(
     @JsonProperty("@id")
     val id: String?,
     @JsonProperty("STAT_NAME")
-    val statName: CodeAndData?,
+    val statName: GovOrg?,
     @JsonProperty("GOV_ORG")
     val govOrg: CodeAndData?,
     @JsonProperty("STATISTICS_NAME")
@@ -88,14 +88,16 @@ data class TableInf(
     val title: NumberAndData?,
     @JsonProperty("CYCLE")
     val cycle: String?,
-    @JsonProperty("SURVEY_DATA")
-    val surveyData: String?,
+    @JsonProperty("SURVEY_DATE")
+    val surveyDate: String?,
+    @JsonProperty("OPEN_DATE")
+    val openDate: String?,
     @JsonProperty("SMALL_AREA")
     val smallArea: Int?,
     @JsonProperty("MAIN_CATEGORY")
-    val mainCategory: CodeAndData?,
+    val mainCategory: MainCategory?,
     @JsonProperty("SUB_CATEGORY")
-    val subCategory: CodeAndData?,
+    val subCategory: SubCategory?,
     @JsonProperty("OVERALL_TOTAL_NUMBER")
     val overAllTotalNumber: Int?,
     @JsonProperty("UPDATED_DATE")
@@ -105,7 +107,7 @@ data class TableInf(
 @JsonSerialize
 data class ClassInf(
     @JsonProperty("CLASS_OBJ")
-    val classObjList: List<ClassObj>?,
+    val classObjList: ArrayList<ClassObj>?,
 )
 
 @JsonSerialize
@@ -118,7 +120,7 @@ data class DataInf(
 data class Note(
     @JsonProperty("@char")
     val char: String,
-    @JsonProperty("@$")
+    @JsonProperty("$")
     val value: String,
 )
 
@@ -143,7 +145,7 @@ data class ClassObj(
     @JsonProperty("@name")
     val name: String?,
     @JsonProperty("CLASS")
-    val classArray: List<ClassOfData>?,
+    val classArray: ArrayList<ClassOfData>?,
 )
 
 @JsonSerialize
@@ -159,7 +161,31 @@ data class ClassOfData(
 )
 
 @JsonSerialize
+data class GovOrg(
+    @JsonProperty("@code")
+    val code: String?,
+    @JsonProperty("$")
+    val data: String?,
+)
+
+@JsonSerialize
 data class CodeAndData(
+    @JsonProperty("@code")
+    val code: String?,
+    @JsonProperty("$")
+    val data: String?,
+)
+
+@JsonSerialize
+data class MainCategory(
+    @JsonProperty("@code")
+    val code: String?,
+    @JsonProperty("$")
+    val data: String?,
+)
+
+@JsonSerialize
+data class SubCategory(
     @JsonProperty("@code")
     val code: String?,
     @JsonProperty("$")
