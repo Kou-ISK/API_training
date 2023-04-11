@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 
 @JsonSerialize
-@JsonInclude(JsonInclude.Include.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 data class StatsData(
     @JsonProperty("GET_STATS_DATA")
     val getStatsData: GetStatsData?,
 )
 
 @JsonSerialize
-@JsonInclude(JsonInclude.Include.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 data class StatsList(
     @JsonProperty("GET_STATS_LIST")
     val getStatsData: GetStatsData?,
@@ -107,12 +107,14 @@ data class TableInf(
 @JsonSerialize
 data class ClassInf(
     @JsonProperty("CLASS_OBJ")
-    val classObjList: ArrayList<ClassObj>?,
+    val classObjList: List<ClassObj>?,
 )
 
 @JsonSerialize
 data class DataInf(
+    @JsonProperty("NOTE")
     val note: Note,
+    @JsonProperty("VALUE")
     val value: Value,
 )
 
@@ -145,7 +147,7 @@ data class ClassObj(
     @JsonProperty("@name")
     val name: String?,
     @JsonProperty("CLASS")
-    val classArray: ArrayList<ClassOfData>?,
+    val classArray: List<ClassOfData>?,
 )
 
 @JsonSerialize
