@@ -65,4 +65,10 @@ class UserController(
         restTemplate.getStatsList()
         restTemplate.getStatsData()
     }
+
+
+    @GetMapping("/list_check")
+    fun listCheck() {
+        service.listCheck()
+    }
 }

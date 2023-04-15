@@ -57,4 +57,14 @@ class UserService {
             throw Exception("名前もしくはメールアドレスが不正です")
         }
     }
+
+    fun listCheck() {
+        val list: List<String> = listOf("aa", "bb")
+        val arrayList: ArrayList<String> = ArrayList(listOf("aaa", "bbb"))
+        val mutableList: MutableList<String> = mutableListOf("aaa", "ccc")
+
+        println("list: $list")
+        println("arrayList: $arrayList")
+        println("mutableList: $mutableList")
+    }
 }
