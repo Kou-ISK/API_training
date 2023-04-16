@@ -59,9 +59,19 @@ class UserService {
     }
 
     fun listCheck() {
-        val list: List<String> = listOf("aa", "bb")
+        // mutableListだけで良さそう
+        // https://qiita.com/arumati-yk/items/ad2492f481b1f5ed6cdc
+        val list: List<String> = listOf("aaa", "bbb")
         val arrayList: ArrayList<String> = ArrayList(listOf("aaa", "bbb"))
-        val mutableList: MutableList<String> = mutableListOf("aaa", "ccc")
+        var mutableList: MutableList<String> = mutableListOf("aaa", "ccc")
+
+        // list.add("できない")
+        arrayList.add("addできる")
+        mutableList.add("addできる")
+        println(arrayList.minus(list))
+        println(mutableList.associateWith { it.length }.values)
+        println(mutableList.associateBy { it.length }.values)
+        println(mutableList.sorted())
 
         println("list: $list")
         println("arrayList: $arrayList")
