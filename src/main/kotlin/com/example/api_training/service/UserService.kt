@@ -72,9 +72,12 @@ class UserService {
         println(mutableList.associateWith { it.length }.values)
         println(mutableList.associateBy { it.length }.values)
         println(mutableList.sorted())
+        arrayList.removeIf { it == "addできる" }
+        mutableList.removeIf { it == "addできる" }
 
         println("list: $list")
         println("arrayList: $arrayList")
         println("mutableList: $mutableList")
+        println(mutableList.minus(arrayList.toSet()))
     }
 }
