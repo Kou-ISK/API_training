@@ -1,11 +1,14 @@
 package com.example.api_training.controller
 
+import com.example.api_training.model.DateTimeModel
 import com.example.api_training.model.UserModel
 import com.example.api_training.model.XmlSample
 import com.example.api_training.service.StatsRestTemplate
 import com.example.api_training.service.UserService
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import org.apache.ibatis.annotations.Param
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.jpa.repository.Query
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -70,5 +73,10 @@ class UserController(
     @GetMapping("/list_check")
     fun listCheck() {
         service.listCheck()
+    }
+
+    @PostMapping("/date_time_check")
+    fun dateTimeCheck(@RequestBody dateTime: DateTimeModel) {
+        service.dateTimeCheck(dateTime)
     }
 }

@@ -1,6 +1,7 @@
 package com.example.api_training.service
 
 import com.example.api_training.mapper.UserMapper
+import com.example.api_training.model.DateTimeModel
 import com.example.api_training.model.UserModel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -79,5 +80,11 @@ class UserService {
         println("arrayList: $arrayList")
         println("mutableList: $mutableList")
         println(mutableList.minus(arrayList.toSet()))
+    }
+
+    fun dateTimeCheck(dateTime: DateTimeModel) {
+        // https://www.springcloud.io/post/2022-09/springboot-date-format/#gsc.tab=0
+        // https://www.baeldung.com/java-jackson-offsetdatetime
+        println(dateTime)
     }
 }
